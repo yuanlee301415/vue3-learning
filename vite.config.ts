@@ -6,6 +6,8 @@ import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
 const pkg = require('./package.json')
+const { dependencies, devDependencies, name, version } = pkg;
+const __APP_INFO__ = { dependencies, devDependencies, name, version };
 
 // https://vitejs.dev/config/
 export default defineConfig(({command, mode}: ConfigEnv): UserConfig => {
@@ -25,7 +27,8 @@ export default defineConfig(({command, mode}: ConfigEnv): UserConfig => {
     },
     define: {
       __APP_VERSION__: JSON.stringify([pkg.version, VITE_INTERNAL_VERSION].join('.')),
-      __APP_BUILD_TIME__: JSON.stringify(new Date().toISOString())
+      __APP_BUILD_TIME__: JSON.stringify(new Date().toISOString()),
+      __APP_INFO__: JSON.stringify(__APP_INFO__)
     }
   }
 })

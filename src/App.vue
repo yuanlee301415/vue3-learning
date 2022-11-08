@@ -26,6 +26,7 @@ onMounted(() => {
   console.log(`%c MODE %c ${import.meta.env.MODE}`, leftStyle, rightStyle)
   console.log(`%c VERSION %c ${__APP_VERSION__}`, leftStyle, rightStyle)
   console.log(`%c BUILD_TIME %c ${__APP_BUILD_TIME__}`, leftStyle, rightStyle)
+  console.log('__APP_INFO__:', __APP_INFO__)
 })
 </script>
 
