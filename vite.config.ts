@@ -4,6 +4,7 @@ import { fileURLToPath, URL } from 'node:url'
 import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import { createHtmlPlugin } from 'vite-plugin-html'
 
 const pkg = require('./package.json')
 const { dependencies, devDependencies, name, version } = pkg;
@@ -13,10 +14,22 @@ const __APP_INFO__ = { dependencies, devDependencies, name, version };
 export default defineConfig(({command, mode}: ConfigEnv): UserConfig => {
   const root = process.cwd();
   const env = loadEnv(mode, root);
-  const { VITE_PORT, VITE_INTERNAL_VERSION } = env
+  const { VITE_PORT, VITE_INTERNAL_VERSION, VITE_APP_TITLE } = env
 
   return {
-    plugins: [vue(), vueJsx()],
+    plugins: [
+        vue(),
+      vueJsx(),
+      createHtmlPlugin({
+        entry: 'src/main.ts',
+        minify: true,
+        inject: {
+          data: {
+            title: VITE_APP_TITLE
+          }
+        }
+      })
+    ],
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url))
