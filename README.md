@@ -1,4 +1,10 @@
-# npm-init-vue-ts-template
+# Vue3-Ts-Template
+
+```bash
+npm init vue@latest
+```
+
+## Vue3 + TS 模板
 
 This template should help get you started developing with Vue 3 in Vite.
 
