@@ -7,14 +7,16 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { createHtmlPlugin } from 'vite-plugin-html'
 
 const pkg = require('./package.json')
-const { dependencies, devDependencies, name, version } = pkg;
-const __APP_INFO__ = { dependencies, devDependencies, name, version };
 
 // https://vitejs.dev/config/
 export default defineConfig(({mode}: ConfigEnv): UserConfig => {
   const root = process.cwd();
   const env = loadEnv(mode, root);
   const { VITE_PORT, VITE_INTERNAL_VERSION, VITE_APP_TITLE } = env
+  const __APP_VERSION__ = [pkg.version, VITE_INTERNAL_VERSION].join('.')
+  const __APP_BUILD_TIME__ = new Date().toISOString()
+  const __APP_INFO__ = { dependencies: pkg.dependencies, devDependencies: pkg.devDependencies, name: pkg.name, version: pkg.version };
+  console.log('ENV:', { mode, __APP_VERSION__, __APP_BUILD_TIME__ })
 
   return {
     plugins: [
@@ -25,7 +27,10 @@ export default defineConfig(({mode}: ConfigEnv): UserConfig => {
         minify: true,
         inject: {
           data: {
-            title: VITE_APP_TITLE
+            title: VITE_APP_TITLE,
+            version: __APP_VERSION__,
+            time: __APP_BUILD_TIME__,
+            mode
           }
         }
       })
@@ -39,8 +44,8 @@ export default defineConfig(({mode}: ConfigEnv): UserConfig => {
       port: Number(VITE_PORT)
     },
     define: {
-      __APP_VERSION__: JSON.stringify([pkg.version, VITE_INTERNAL_VERSION].join('.')),
-      __APP_BUILD_TIME__: JSON.stringify(new Date().toISOString()),
+      __APP_VERSION__: JSON.stringify(__APP_VERSION__),
+      __APP_BUILD_TIME__: JSON.stringify(__APP_BUILD_TIME__),
       __APP_INFO__: JSON.stringify(__APP_INFO__)
     }
   }
