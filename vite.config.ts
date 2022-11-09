@@ -11,7 +11,7 @@ const { dependencies, devDependencies, name, version } = pkg;
 const __APP_INFO__ = { dependencies, devDependencies, name, version };
 
 // https://vitejs.dev/config/
-export default defineConfig(({command, mode}: ConfigEnv): UserConfig => {
+export default defineConfig(({mode}: ConfigEnv): UserConfig => {
   const root = process.cwd();
   const env = loadEnv(mode, root);
   const { VITE_PORT, VITE_INTERNAL_VERSION, VITE_APP_TITLE } = env
