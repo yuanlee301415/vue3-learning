@@ -9,6 +9,8 @@ declare global {
         dependencies: Record<string, string>
         devDependencies: Record<string, string>
     }
+
+    declare type Recordable<T = any> = Record<string, T>
 }
 
 declare module 'vue' {
@@ -16,3 +18,4 @@ declare module 'vue' {
         | { new (): ComponentPublicInstance<Props> }
         | FunctionalComponent<Props>;
 }
+
