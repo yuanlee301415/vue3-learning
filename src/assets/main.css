@@ -1,6 +1,6 @@
 @import "./base.css";
 
-.side nav .router-link-exact-active {
+nav .router-link-active {
     background-color: #1890ff;
     color: #fff;
 }

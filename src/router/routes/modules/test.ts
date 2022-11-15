@@ -13,7 +13,7 @@ const TEST_ROUTE: AppRouteRecordRaw = {
     children: [
         {
             path: 'a',
-            name: 'TestAPage',
+            name: 'TestA',
             component: () => import('@/views/test/A.vue'),
             meta: {
                 title: 'TestA'
@@ -21,7 +21,7 @@ const TEST_ROUTE: AppRouteRecordRaw = {
         },
         {
             path: 'b',
-            name: 'TestBPage',
+            name: 'TestB',
             component: () => import('@/views/test/B.vue'),
             meta: {
                 title: 'TestB'

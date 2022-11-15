@@ -1,12 +1,9 @@
 <template>
     <div id="main" class="main">
         <div class="side">
-          <router-link to="/">Home</router-link>
-          | <router-link to="/about">About</router-link>
-          | <router-link to="/test">Test</router-link>
-          | <router-link to="/test/a">TestA</router-link>
-          | <router-link to="/test/b">TestB</router-link>
+          <Menu/>
         </div>
+
         <div class="content">
           <router-view v-slot="{ Component, route }">
             <transition name="fade-slide" mode="out-in">
@@ -17,10 +14,8 @@
     </div>
 </template>
 
-<script lang="ts">
-  export default {
-    name: "Layout"
-  }
+<script lang="ts" setup>
+  import Menu from './Menu/index.vue'
 </script>
 
 <style scoped>

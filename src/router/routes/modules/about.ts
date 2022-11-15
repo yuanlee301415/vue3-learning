@@ -5,6 +5,7 @@ import { LAYOUT } from "@/router/constant";
 const ABOUT_ROUTE: AppRouteRecordRaw = {
     path: '/about',
     name: 'About',
+    redirect: '/about',
     component: LAYOUT,
     meta: {
         title: '关于',
