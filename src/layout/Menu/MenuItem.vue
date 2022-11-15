@@ -1,18 +1,30 @@
 <template>
-  <dl v-if="item.meta && item.meta.hiddenMenu !== true" :class="{open: open}" :style="{textIndent: depth + 'em'}">
+  <dl
+    v-if="item.meta && item.meta.hiddenMenu !== true"
+    :class="{ open: open }"
+    :style="{ textIndent: depth + 'em' }"
+  >
     <template v-if="item.children && item.meta.hiddenChildrenInMenu !== true">
-      <dt @click="handleToggleOpen"><span>{{ item.meta.title }}</span><i/></dt>
+      <dt @click="handleToggleOpen">
+        <span>{{ item.meta.title }}</span
+        ><i />
+      </dt>
       <dd>
         <MenuItem
-            v-for="child of item.children"
-            :item="child"
-            :depth="depth + 1"
-            :fullPath="[fullPath, child.path].join('/')"
+          v-for="child of item.children"
+          :key="child.name"
+          :item="child"
+          :depth="depth + 1"
+          :fullPath="[fullPath, child.path].join('/')"
         />
       </dd>
     </template>
     <template v-else>
-      <dt><router-link :to="{ name: item.name }">{{ item.meta.title }}</router-link></dt>
+      <dt>
+        <router-link :to="{ name: item.name }">{{
+          item.meta.title
+        }}</router-link>
+      </dt>
     </template>
   </dl>
 </template>
@@ -21,33 +33,33 @@
 import type { AppRouteRecordRaw } from "@/router/types";
 
 import { ref, watchEffect, unref } from "vue";
-import { useRouter } from 'vue-router'
+import { useRouter } from "vue-router";
 
 const props = defineProps<{
-  item: AppRouteRecordRaw,
-  depth: number
-  fullPath?: string,
-}>()
+  item: AppRouteRecordRaw;
+  depth: number;
+  fullPath?: string;
+}>();
 
-const open = ref<boolean>()
+const open = ref<boolean>();
 const { currentRoute } = useRouter();
 
 watchEffect(() => {
-  if (open.value !== void 0) return
-  open.value = initOpen()
-})
+  if (open.value !== void 0) return;
+  open.value = initOpen();
+});
 
 function handleToggleOpen() {
-  open.value = !open.value
+  open.value = !open.value;
 }
 
 function initOpen() {
-  const routeFullPathList = unref(currentRoute).fullPath.split('/')
-  const fullPathList = props.fullPath?.split('/') || []
+  const routeFullPathList = unref(currentRoute).fullPath.split("/");
+  const fullPathList = props.fullPath?.split("/") || [];
   for (let i = 0; i < fullPathList.length; i++) {
-    if (fullPathList[i] !== routeFullPathList[i]) return false
+    if (fullPathList[i] !== routeFullPathList[i]) return false;
   }
-  return true
+  return true;
 }
 </script>
 
@@ -56,7 +68,8 @@ dt {
   position: relative;
   cursor: pointer;
 }
-dt > a, dt > span {
+dt > a,
+dt > span {
   color: white;
   text-decoration: none;
   font-size: 16px;
@@ -69,7 +82,7 @@ dt > a, dt > span {
   padding-right: 10px;
 }
 dt > i {
-  text-indent: 0!important;
+  text-indent: 0 !important;
   box-sizing: border-box;
   position: absolute;
   width: 30px;
@@ -93,7 +106,7 @@ dt > i::before {
   width: 6px;
   height: 1.5px;
   border-radius: 2px;
-  content: '';
+  content: "";
   box-sizing: border-box;
 }
 dt > i:after {
@@ -104,7 +117,7 @@ dt > i:after {
   top: 43.33%;
   width: 6px;
   height: 1.5px;
-  content: '';
+  content: "";
   border-radius: 2px;
   box-sizing: border-box;
 }
