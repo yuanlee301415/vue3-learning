@@ -5,6 +5,7 @@ export type Component<T = any> =
   | DefineComponent
   | (() => Promise<typeof import("*.vue")>)
   | (() => Promise<T>);
+
 export type AppRouteMeta = RouteMeta &
   Partial<{
     title: string;

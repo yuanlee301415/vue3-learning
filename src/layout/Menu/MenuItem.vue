@@ -32,8 +32,8 @@
 <script lang="ts" setup>
 import type { AppRouteRecordRaw } from "@/router/types";
 
-import { ref, watchEffect, unref } from "vue";
-import { useRouter } from "vue-router";
+import { ref, watch } from "vue";
+import { useRoute } from "vue-router";
 
 const props = defineProps<{
   item: AppRouteRecordRaw;
@@ -41,25 +41,32 @@ const props = defineProps<{
   fullPath?: string;
 }>();
 
+const route = useRoute();
 const open = ref<boolean>();
-const { currentRoute } = useRouter();
 
-watchEffect(() => {
-  if (open.value !== void 0) return;
-  open.value = initOpen();
-});
+watch(
+  () => route.name,
+  () => {
+    open.value = initOpen();
+  },
+  {
+    immediate: true,
+  }
+);
 
-function handleToggleOpen() {
-  open.value = !open.value;
-}
+function initOpen(): boolean {
+  if (!props.item.children || !props.item.children.length) return false;
 
-function initOpen() {
-  const routeFullPathList = unref(currentRoute).fullPath.split("/");
+  const routeFullPathList = route.fullPath.split("/");
   const fullPathList = props.fullPath?.split("/") || [];
   for (let i = 0; i < fullPathList.length; i++) {
     if (fullPathList[i] !== routeFullPathList[i]) return false;
   }
   return true;
+}
+
+function handleToggleOpen(): void {
+  open.value = !open.value;
 }
 </script>
 

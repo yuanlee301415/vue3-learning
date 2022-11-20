@@ -15,6 +15,7 @@ const NESTED_ROUTE: AppRouteRecordRaw = {
       path: "a",
       name: "NestedA",
       meta: { title: "NestedA" },
+      redirect: "/nested/a/a1",
       children: [
         {
           path: "a1",
@@ -39,6 +40,7 @@ const NESTED_ROUTE: AppRouteRecordRaw = {
       path: "b",
       name: "NestedB",
       meta: { title: "NestedB" },
+      redirect: "/nested/b/b1",
       children: [
         {
           path: "b1",
@@ -63,6 +65,7 @@ const NESTED_ROUTE: AppRouteRecordRaw = {
       path: "c",
       name: "NestedC",
       meta: { title: "NestedC" },
+      redirect: "/nested/c/c1",
       children: [
         {
           path: "c1",
@@ -70,6 +73,7 @@ const NESTED_ROUTE: AppRouteRecordRaw = {
           meta: {
             title: "NestedC1",
           },
+          redirect: "/nested/c/c1/1",
           children: [
             {
               path: "1",

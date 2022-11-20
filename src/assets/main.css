@@ -2,5 +2,5 @@
 
 nav .router-link-active {
     background-color: #1890ff;
-    color: #fff;
+    color: #fff!important;
 }
