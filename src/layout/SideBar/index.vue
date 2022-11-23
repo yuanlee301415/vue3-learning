@@ -2,7 +2,7 @@
   <aside>
     <div class="logo" @click="$router.push(ROOT_ROUTE)">
       <img src="@/assets/logo.svg" alt="Logo" width="32" height="32" />
-      <h2>Vue3-TS-Template</h2>
+      <h2>{{ VITE_APP_TITLE }}</h2>
     </div>
     <nav>
       <Menu />
@@ -13,6 +13,7 @@
 <script lang="ts" setup>
 import Menu from "../Menu/index.vue";
 import { ROOT_ROUTE } from "@/router/routes";
+const VITE_APP_TITLE = import.meta.env.VITE_APP_TITLE;
 </script>
 
 <style scoped lang="less">
