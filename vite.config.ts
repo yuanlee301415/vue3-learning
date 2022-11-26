@@ -6,13 +6,21 @@ import vue from "@vitejs/plugin-vue";
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import { createHtmlPlugin } from "vite-plugin-html";
 
-const pkg = require("./package.json");
+// @ts-ignore
+import pkg from "./package.json";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
   const root = process.cwd();
   const env = loadEnv(mode, root);
-  const { VITE_PORT, VITE_INTERNAL_VERSION, VITE_APP_TITLE } = env;
+  const {
+    VITE_PORT,
+    VITE_INTERNAL_VERSION,
+    VITE_APP_TITLE,
+    VITE_PERMISSION,
+    VITE_BASE_API,
+    VITE_PROXY,
+  } = env;
   const __APP_VERSION__ = [pkg.version, VITE_INTERNAL_VERSION].join(".");
   const __APP_BUILD_TIME__ = new Date().toISOString();
   const __APP_INFO__ = {
@@ -21,7 +29,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     name: pkg.name,
     version: pkg.version,
   };
-  console.log("ENV:", { mode, __APP_VERSION__, __APP_BUILD_TIME__ });
+  console.log("env:\n", env);
 
   return {
     plugins: [
@@ -47,6 +55,16 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
     },
     server: {
       port: Number(VITE_PORT),
+      proxy:
+        VITE_PERMISSION && JSON.parse(VITE_PERMISSION)
+          ? {
+              [VITE_BASE_API]: {
+                target: VITE_PROXY,
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/api\//, "/api/v1/"),
+              },
+            }
+          : undefined,
     },
     define: {
       __APP_VERSION__: JSON.stringify(__APP_VERSION__),

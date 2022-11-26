@@ -3,9 +3,11 @@
   "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "types/**/*"],
   "compilerOptions": {
     "baseUrl": ".",
+    "types": ["vite/client"],
     "typeRoots": ["./node_modules/@types/", "./types"],
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "#/*": ["./types/*"]
     }
   },
 

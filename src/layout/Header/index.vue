@@ -28,6 +28,12 @@
         </template>
       </div>
     </div>
+
+    <div class="headerRight">
+      <span v-if="userInfo.userName"
+        >{{ userInfo.userName }}({{ userInfo.realName }})</span
+      >
+    </div>
   </div>
 </template>
 
@@ -35,10 +41,13 @@
 import type { RouteRecordNormalized } from "vue-router";
 
 import { useRoute } from "vue-router";
-import { ref, watch } from "vue";
+import { ref, watch, computed } from "vue";
+import { useUserStore } from "@/store/modules/user";
 
 const route = useRoute();
 const matched = ref<RouteRecordNormalized[]>();
+const userStore = useUserStore();
+const userInfo = computed(() => userStore.getUserInfo);
 
 watch(
   () => route.name,
