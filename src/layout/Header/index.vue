@@ -68,7 +68,7 @@ watch(
   line-height: 48px;
   padding: 0 10px;
   background-color: white;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #ccc;
   .breadcrumbs {
     dl {
       display: inline-block;
