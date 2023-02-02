@@ -1,10 +1,10 @@
-# Vue3-Ts-Template
+# Vue3-Ts-Tailwind-Template
 
 ```bash
 npm init vue@latest
 ```
 
-## Vue3 + TS 模板
+## Vue3 + TS + Tailwind 模板
 
 This template should help get you started developing with Vue 3 in Vite.
 
