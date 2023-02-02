@@ -1,6 +1,6 @@
 {
   "name": "vue3-ts-template",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "scripts": {
     "dev": "vite",
     "build": "run-p type-check build-only",
