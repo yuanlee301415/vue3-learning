@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts" setup>
-import { basicRoutes } from "@/router/routes";
-import MenuItem from "@/layout/Menu/MenuItem.vue";
+import { basicRoutes } from '@/router/routes'
+import MenuItem from '@/layout/Menu/MenuItem.vue'
 // console.log('basicRoutes:', basicRoutes)
 </script>

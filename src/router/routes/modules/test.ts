@@ -1,33 +1,33 @@
-import type { AppRouteRecordRaw } from "@/router/types";
+import type { AppRouteRecordRaw } from '@/router/types'
 
-import { LAYOUT } from "@/router/constant";
+import { LAYOUT } from '@/router/constant'
 
 const TEST_ROUTE: AppRouteRecordRaw = {
-  path: "/test",
-  name: "Test",
+  path: '/test',
+  name: 'Test',
   component: LAYOUT,
-  redirect: "/test/a",
+  redirect: '/test/a',
   meta: {
-    title: "Test",
+    title: 'Test'
   },
   children: [
     {
-      path: "a",
-      name: "TestA",
-      component: () => import("@/views/test/A.vue"),
+      path: 'a',
+      name: 'TestA',
+      component: () => import('@/views/test/A.vue'),
       meta: {
-        title: "TestA",
-      },
+        title: 'TestA'
+      }
     },
     {
-      path: "b",
-      name: "TestB",
-      component: () => import("@/views/test/B.vue"),
+      path: 'b',
+      name: 'TestB',
+      component: () => import('@/views/test/B.vue'),
       meta: {
-        title: "TestB",
-      },
-    },
-  ],
-};
+        title: 'TestB'
+      }
+    }
+  ]
+}
 
-export default TEST_ROUTE;
+export default TEST_ROUTE
