@@ -1,7 +1,8 @@
 # Vue3-Ts-Tailwind-Template
 
-```bash
-npm init vue@latest
+## Project setup
+```
+Forked from: vue3-ts-tailwind-template@v1.0.8
 ```
 
 ## Vue3 + TS + Tailwind 模板
