@@ -1,4 +1,4 @@
-# Vue3-Ts-Tailwind-Template
+# vue3-learning
 
 ## Project setup
 ```
