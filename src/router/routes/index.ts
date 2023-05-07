@@ -4,6 +4,7 @@ import { EXCEPTION_404, LAYOUT, PAGE_NOT_FOUND_NAME } from '@/router/constant'
 import ABOUT_ROUTE from '@/router/routes/modules/about'
 import TEST_ROUTE from '@/router/routes/modules/test'
 import IMG_DYNAMIC_URL_ROUTE from "@/router/routes/modules/img-dynamic-url";
+import USE_DOUBLE_ROUTE from "@/router/routes/modules/use-double";
 // import NESTED_ROUTE from "@/router/routes/modules/nested";
 
 export const ROOT_ROUTE: AppRouteRecordRaw = {
@@ -60,6 +61,7 @@ export const basicRoutes = [
   ABOUT_ROUTE,
   TEST_ROUTE,
   IMG_DYNAMIC_URL_ROUTE,
+USE_DOUBLE_ROUTE,
 // NESTED_ROUTE,
   PAGE_NOT_FOUND_ROUTE
 ]
